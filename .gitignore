@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+web/node_modules/
+
+# Build output
+web/dist/
+dist/
+
+# Environment / secrets — NEVER commit
+.env
+.env.*
+*.local
+supabase/.env
+supabase/.temp/
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/
+
+# Deno
+.deno/
