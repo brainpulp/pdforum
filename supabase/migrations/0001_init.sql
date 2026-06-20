@@ -44,11 +44,15 @@ comment on table public.list_subscriptions is
 create table if not exists public.threads (
   id              uuid primary key default gen_random_uuid(),
   subscription_id uuid not null references public.list_subscriptions (id) on delete cascade,
+  -- Deterministic conversation key from the threading algorithm (smallest
+  -- message-id in the component). Lets the poller upsert threads idempotently.
+  thread_key      text not null,
   root_message_id uuid,               -- fk added after messages exists (deferred)
   subject         text,               -- normalized subject of the root
   last_message_at timestamptz,        -- for ordering the thread list
   message_count   integer not null default 0,
-  created_at      timestamptz not null default now()
+  created_at      timestamptz not null default now(),
+  unique (subscription_id, thread_key)
 );
 
 comment on table public.threads is
