@@ -1,0 +1,17 @@
+{
+  "name": "pdforum",
+  "private": true,
+  "type": "module",
+  "description": "Read-only threaded forum mirroring a private email list",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "dependencies": {
+    "postal-mime": "^2.7.4"
+  }
+}
