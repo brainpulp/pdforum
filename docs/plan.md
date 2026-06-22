@@ -59,21 +59,25 @@ This is the core. No Gmail, no DB — pure functions in `_shared/`.
 - ☐ Commit incrementally.
 
 ## Milestone 4 — Read-only web UI (verify in real browser)
-- ☐ Scaffold `web/` (Vite + TypeScript + `@supabase/supabase-js`).
-- ☐ Auth: invite-only sign-in screen; gate all views behind a session.
-- ☐ Thread list view (ordered by `last_message_at desc`).
-- ☐ Thread detail view (tree/indented rendering, sanitized body).
-- ☐ Read-only banner explaining it's a mirror.
-- ☐ Config via build-time env (`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`).
-- ☐ **Verify in a real browser**: sign in as a seeded member, see seeded
-  threads, confirm anon is denied. Only then mark done.
-- ☐ Commit incrementally.
+- ☑ Scaffold `web/` (Vite + TypeScript + `@supabase/supabase-js`).
+- ☑ Auth: invite-only magic-link sign-in; gate all views behind a session.
+- ☑ Thread list view (ordered by `last_message_at desc`).
+- ☑ Thread detail view (indented tree via shared threading; escaped-text body).
+- ☑ Read-only banner explaining it's a mirror.
+- ☑ Config via build-time env (`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`);
+  falls back to a seeded mock data layer when unset.
+- ☑ Repo/auth abstraction with mock + Supabase implementations.
+- ◑ Verification: rendering + threading verified at the DOM level in jsdom
+  (5 tests, real DOM). **Real-browser + live-RLS verification still pending** —
+  blocked in-sandbox (no browser binary; needs the live Supabase project).
+- ☑ Commit incrementally.
 
 ## Milestone 5 — Deploy
-- ☐ `.github/workflows/deploy.yml`: build `web/` → deploy to GitHub Pages.
-- ☐ Inject `VITE_*` from GitHub Actions secrets.
-- ☐ Verify the deployed site loads and auth works against Supabase.
-- ☐ Commit.
+- ☑ `.github/workflows/deploy.yml`: build `web/` → deploy to GitHub Pages.
+- ☑ Inject `VITE_*` from GitHub Actions secrets (mock fallback when unset).
+- ☐ Verify the deployed site loads and auth works against Supabase (needs the
+  live project + Pages enabled).
+- ☑ Commit.
 
 ## Cross-cutting
 - Frequent commits, one logical change each; descriptive messages.
